@@ -1,1 +1,1 @@
-# api-training
+This is a simple API example for training purposes
