@@ -4,12 +4,11 @@ import type { NextApiRequest, NextApiResponse } from "next";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case "GET":
-      res.status(200).json(mockData);
-      break;
+      return res.status(200).json(mockData);
+
     default:
-      res
+      return res
         .status(503)
         .json({ message: "i dont know how you got here but you broke it" });
-      break;
   }
 };

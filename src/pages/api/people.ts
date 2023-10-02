@@ -5,19 +5,25 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case "GET":
       const data = await getPeople();
-      res.status(200).json({ data });
-      break;
+      return res.status(200).json({ data });
+      
 
     case "POST":
+      if (req.headers.authorization !== process.env.API_KEY) {
+        return res.status(403).json({ message: "unauthorized" });
+      }
       const addedData = await createPerson(req.body.name, req.body.hobby);
-      res.status(200).json({ addedData });
+      return res.status(200).json({ addedData });
+      
+
     case "PUT":
       await updatePerson(req.body.name, req.body.hobby);
-      res.status(200).json({ message: `updated ${req.body.name}` });
+      return res.status(200).json({ message: `updated ${req.body.name}` });
+      
     default:
-      res
+      return res
         .status(503)
         .json({ message: "i dont know how you got here but you broke it" });
-      break;
+      
   }
 };
