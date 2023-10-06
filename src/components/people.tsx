@@ -9,9 +9,13 @@ interface PeopleItem {
 const People = () => {
   const [people, setPeople] = useState<PeopleItem[]>([]);
 
+  /**
+   * Try to ignore this for now.
+   * If you have questions about useEffects get in touch with me on slack (@millsjoe)
+   */
   useEffect(() => {
     const fetchData = async () => {
-      const response = (await axios.get("/api/people")).data;
+      const response = (await axios.get("/api/people")).data; // this does our GET request (axios is a module we import)
       setPeople(response.data);
     };
     fetchData();
@@ -30,8 +34,8 @@ const People = () => {
   }
   return (
     <div>
-      <h1>Name - Hobby</h1>
-      <ul>
+      <h2>Name - Hobby</h2>
+      <ul> 
         {people.map((item) => (
           <li key={item.id}>
             {item.name} - {item.hobby}

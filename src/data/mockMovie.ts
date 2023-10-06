@@ -1,4 +1,4 @@
-export const mockData = [
+export const mockData = [ // simple mock data to give an example of how a real api might give data
   {
     name: "Black Widow",
     year: 2021,
